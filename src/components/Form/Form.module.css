@@ -1,0 +1,45 @@
+.Form {
+    padding: 50px;
+}
+
+.FormIcons {
+    display: flex;
+    transform: translateY(-34px);
+    justify-content: center;
+    gap: 10px;
+}
+
+.RemoveFromIcon,
+.AddFromIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 26px;
+    border-radius: 50%;
+    height: 26px;
+    margin: 0;
+}
+
+.RemoveFromIcon {
+    background-color: #d92d20;
+}
+
+.AddFromIcon {
+    background-color: #12b76a;
+}
+
+.RemoveFromIcon svg path,
+.AddFromIcon svg path {
+    stroke: white;
+}
+
+.Button {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 14px;
+    color: #fff;
+    font-weight: 700;
+    background-color: #026aac;
+    border-radius: 6px;
+}
