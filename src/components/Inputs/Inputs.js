@@ -5,7 +5,7 @@ export default function Inputs({
     containerIndex,
     container,
     handleRemoveContainer,
-    handleAddInputToContainer,
+    handleAddInputToContainer,setCanAdd,
     handleContainerInputChange,
     containers,
     handleRemoveInputFromContainer,
@@ -15,7 +15,7 @@ export default function Inputs({
         <>
             <div className={styles.InputsWrapper} key={containerIndex}>
                 {container.inputs.map((input, inputIndex) => (
-                    <Input
+                    <Input setCanAdd={setCanAdd}
                         setAddable={setAddable}
                         Mandatory={inputIndex === 0 ? true : false}
                         container={container}

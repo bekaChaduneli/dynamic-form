@@ -9,6 +9,7 @@ const Input = ({
     container,
     setAddable,
     placeholder,
+    setCanAdd,
     inputIndex,
 }) => {
     useEffect(() => {
@@ -29,9 +30,13 @@ const Input = ({
                         inputIndex,
                         e.target.value
                     );
-                    e.target.value.length > 0
-                        ? setAddable(true)
-                        : setAddable(false);
+                    if (e.target.value.length > 0) {
+                        setAddable(true);
+                        setCanAdd(true);
+                    } else {
+                        setAddable(false);
+                        setCanAdd(false);
+                    }
                 }}
             />
             {Mandatory ? (

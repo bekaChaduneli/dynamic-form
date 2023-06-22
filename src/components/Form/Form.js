@@ -5,6 +5,7 @@ import Inputs from "../Inputs/Inputs";
 
 const Form = () => {
     const [containers, setContainers] = useState([{ inputs: [{ value: "" }] }]);
+    const [canAdd, setCanAdd] = useState(false);
     const handleContainerInputChange = (containerIndex, inputIndex, value) => {
         const updatedContainers = [...containers];
         const container = updatedContainers[containerIndex];
@@ -46,6 +47,7 @@ const Form = () => {
             {containers.map((container, containerIndex) => (
                 <Inputs
                     containerIndex={containerIndex}
+                    setCanAdd={setCanAdd}
                     container={container}
                     containers={containers}
                     handleRemoveContainer={handleRemoveContainer}
@@ -60,7 +62,16 @@ const Form = () => {
                 <div className={styles.FormIcons}>
                     <figure
                         className={styles.AddFromIcon}
-                        onClick={handleAddContainer}
+                        onClick={() => {
+                            if (
+                                containers[containers.length - 1].inputs[
+                                    containers[containers.length - 1].inputs
+                                        .length - 1
+                                ].value.length !== 0
+                            ) {
+                                canAdd ? handleAddContainer() : "";
+                            }
+                        }}
                     >
                         <Plus />
                     </figure>
@@ -77,7 +88,16 @@ const Form = () => {
                     </figure>
                     <figure
                         className={styles.AddFromIcon}
-                        onClick={handleAddContainer}
+                        onClick={() => {
+                            if (
+                                containers[containers.length - 1].inputs[
+                                    containers[containers.length - 1].inputs
+                                        .length - 1
+                                ].value.length !== 0
+                            ) {
+                                canAdd ? handleAddContainer() : "";
+                            }
+                        }}
                     >
                         <Plus />
                     </figure>
