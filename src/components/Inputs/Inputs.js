@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Input from "../Input/Input";
 import styles from "./Inputs.module.css";
+import { RemoveModal } from "../Form/Form";
 export default function Inputs({
     containerIndex,
     container,
@@ -12,6 +13,7 @@ export default function Inputs({
     handleRemoveInputFromContainer,
 }) {
     const [addable, setAddable] = useState(false);
+    const [iconShow, setIconShow] = useState(false);
     return (
         <>
             <div className={styles.InputsWrapper} key={containerIndex}>
@@ -76,9 +78,17 @@ export default function Inputs({
                 <div className={styles.FormIcons}>
                     <figure
                         className={styles.RemoveFromIcon}
-                        onClick={() => handleRemoveContainer(containerIndex)}
+                        onClick={() => setIconShow(!iconShow)}
                     >
+                        <RemoveModal
+                            show={iconShow}
+                            Cancle={() => {
+                                setIconShow(false);
+                            }}
+                            Remove={() => handleRemoveContainer(containerIndex)}
+                        />
                         <Minus />
+                        {/* <Minus /> */}
                     </figure>
                 </div>
             )}
