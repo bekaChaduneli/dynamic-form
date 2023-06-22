@@ -10,6 +10,7 @@ const Input = ({
     container,
     setAddable,
     placeholder,
+    submitted,
     setCanAdd,
     inputIndex,
 }) => {
@@ -23,6 +24,12 @@ const Input = ({
         <div className={styles.InputWrapper} key={inputIndex}>
             <input
                 className={styles.Input}
+                style={{
+                    border:
+                        submitted && input.value.trim() === ""
+                            ? "1px solid red"
+                            : "",
+                }}
                 type="text"
                 placeholder={placeholder}
                 value={input.value}
