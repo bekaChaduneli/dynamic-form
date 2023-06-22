@@ -1,5 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Input.module.css";
+import { RemoveModal } from "../Form/Form";
 const Input = ({
     containerIndex,
     handleRemoveInputFromContainer,
@@ -12,6 +13,7 @@ const Input = ({
     setCanAdd,
     inputIndex,
 }) => {
+    const [iconShow, setIconShow] = useState(false);
     useEffect(() => {
         container.inputs[inputIndex + 1] === undefined
             ? setAddable(true)
@@ -42,29 +44,38 @@ const Input = ({
             {Mandatory ? (
                 ""
             ) : (
-                <span className={styles.InputIcons}>
-                    <svg
-                        width="20"
-                        height="20"
-                        onClick={() =>
+                <div className={styles.IconsWrapper}>
+                    <RemoveModal
+                        show={iconShow}
+                        Cancle={() => {
+                            setIconShow(false);
+                        }}
+                        Remove={() =>
                             handleRemoveInputFromContainer(
                                 containerIndex,
                                 inputIndex
                             )
                         }
-                        viewBox="0 0 20 20"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M5 10H15"
-                            stroke="#D92D20"
-                            stroke-width="1.5"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        />
-                    </svg>
-                </span>
+                    />
+                    <span className={styles.InputIcons}>
+                        <svg
+                            width="20"
+                            height="20"
+                            onClick={() => setIconShow(!iconShow)}
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M5 10H15"
+                                stroke="#D92D20"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+                    </span>
+                </div>
             )}
         </div>
     );

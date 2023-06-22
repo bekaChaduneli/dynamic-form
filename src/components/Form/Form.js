@@ -6,6 +6,7 @@ import Inputs from "../Inputs/Inputs";
 const Form = () => {
     const [containers, setContainers] = useState([{ inputs: [{ value: "" }] }]);
     const [canAdd, setCanAdd] = useState(false);
+    const [iconShow, setIconShow] = useState(false);
     const handleContainerInputChange = (containerIndex, inputIndex, value) => {
         const updatedContainers = [...containers];
         const container = updatedContainers[containerIndex];
@@ -78,13 +79,17 @@ const Form = () => {
                 </div>
             ) : (
                 <div className={styles.FormIcons}>
-                    <figure
-                        className={styles.RemoveFromIcon}
-                        onClick={() =>
-                            handleRemoveContainer(containers.length - 1)
-                        }
-                    >
-                        <Minus />
+                    <figure className={styles.RemoveFromIcon}>
+                        <RemoveModal
+                            show={iconShow}
+                            Cancle={() => {
+                                setIconShow(false);
+                            }}
+                            Remove={() =>
+                                handleRemoveContainer(containers.length - 1)
+                            }
+                        />
+                        <Minus onClick={() => setIconShow(!iconShow)} />
                     </figure>
                     <figure
                         className={styles.AddFromIcon}
@@ -109,9 +114,10 @@ const Form = () => {
         </form>
     );
 };
-function Minus() {
+function Minus({ onClick }) {
     return (
         <svg
+            onClick={onClick ? onClick : () => {}}
             width="20"
             height="20"
             viewBox="0 0 20 20"
@@ -153,6 +159,25 @@ function Plus() {
                 stroke-linejoin="round"
             />
         </svg>
+    );
+}
+
+export function RemoveModal({ Remove, show, Cancle }) {
+    return (
+        <>
+            {show ? (
+                <span className={styles.RemoveModal}>
+                    <p onClick={Remove} className={styles.Remove}>
+                        წაშლა
+                    </p>
+                    <p onClick={Cancle} className={styles.Cancle}>
+                        არა
+                    </p>
+                </span>
+            ) : (
+                ""
+            )}
+        </>
     );
 }
 
