@@ -56,20 +56,33 @@ const Form = () => {
                     }
                 />
             ))}
-            <div className={styles.FormIcons}>
-                <figure
-                    className={styles.RemoveFromIcon}
-                    onClick={() => handleRemoveContainer(containers.length - 1)}
-                >
-                    <Minus />
-                </figure>
-                <figure
-                    className={styles.AddFromIcon}
-                    onClick={handleAddContainer}
-                >
-                    <Plus />
-                </figure>
-            </div>
+            {containers.length === 1 ? (
+                <div className={styles.FormIcons}>
+                    <figure
+                        className={styles.AddFromIcon}
+                        onClick={handleAddContainer}
+                    >
+                        <Plus />
+                    </figure>
+                </div>
+            ) : (
+                <div className={styles.FormIcons}>
+                    <figure
+                        className={styles.RemoveFromIcon}
+                        onClick={() =>
+                            handleRemoveContainer(containers.length - 1)
+                        }
+                    >
+                        <Minus />
+                    </figure>
+                    <figure
+                        className={styles.AddFromIcon}
+                        onClick={handleAddContainer}
+                    >
+                        <Plus />
+                    </figure>
+                </div>
+            )}
             <button className={styles.Button} type="submit">
                 დამატება
             </button>
