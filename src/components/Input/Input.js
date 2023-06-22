@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import styles from "./Input.module.css";
 const Input = ({
     containerIndex,
@@ -5,10 +6,16 @@ const Input = ({
     handleContainerInputChange,
     input,
     Mandatory,
+    container,
     setAddable,
     placeholder,
     inputIndex,
 }) => {
+    useEffect(() => {
+        container.inputs[inputIndex + 1] === undefined
+            ? setAddable(true)
+            : setAddable(false);
+    }, []);
     return (
         <div className={styles.InputWrapper} key={inputIndex}>
             <input

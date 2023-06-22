@@ -18,6 +18,7 @@ export default function Inputs({
                     <Input
                         setAddable={setAddable}
                         Mandatory={inputIndex === 0 ? true : false}
+                        container={container}
                         containerIndex={containerIndex}
                         placeholder={
                             inputIndex === 0
@@ -37,7 +38,10 @@ export default function Inputs({
                     className={styles.addInput}
                     onClick={() => {
                         if (addable) {
-                            handleAddInputToContainer(containerIndex);
+                            container.inputs[container.inputs.length - 1].value
+                                .length !== 0
+                                ? handleAddInputToContainer(containerIndex)
+                                : "";
                         }
                     }}
                 >
