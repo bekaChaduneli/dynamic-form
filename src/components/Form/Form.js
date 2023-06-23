@@ -45,7 +45,7 @@ const Form = () => {
         e.preventDefault();
         let isValid = true;
         formInputs.forEach((input) => {
-            if (input.value.trim() === "") {
+            if (input === "") {
                 isValid = false;
                 return;
             } else {
@@ -54,7 +54,7 @@ const Form = () => {
         });
         containers.forEach((container) => {
             container.inputs.forEach((input) => {
-                if (input.value.trim() === "") {
+                if (input === "") {
                     isValid = false;
                     return;
                 } else {
