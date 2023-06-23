@@ -4,9 +4,11 @@ import styles from "./Form.module.css";
 import Inputs from "../Inputs/Inputs";
 
 const Form = () => {
+    const [submitted, setSubmitted] = useState(false);
     const [containers, setContainers] = useState([{ inputs: [{ value: "" }] }]);
     const [canAdd, setCanAdd] = useState(false);
     const [iconShow, setIconShow] = useState(false);
+
     const handleContainerInputChange = (containerIndex, inputIndex, value) => {
         const updatedContainers = [...containers];
         const container = updatedContainers[containerIndex];
@@ -40,7 +42,24 @@ const Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Containers:", containers);
+        let isValid = true;
+        containers.forEach((container) => {
+            container.inputs.forEach((input) => {
+                if (input.value.trim() === "") {
+                    isValid = false;
+                    return;
+                } else {
+                    isValid = true;
+                }
+            });
+        });
+        if (!isValid) {
+            setSubmitted(true);
+            return;
+        } else {
+            setSubmitted(false);
+        }
+        console.log(containers);
     };
 
     return (
@@ -50,6 +69,7 @@ const Form = () => {
                     containerIndex={containerIndex}
                     setCanAdd={setCanAdd}
                     container={container}
+                    submitted={submitted}
                     containers={containers}
                     handleRemoveContainer={handleRemoveContainer}
                     handleAddInputToContainer={handleAddInputToContainer}
