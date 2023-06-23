@@ -6,7 +6,6 @@ export default function Inputs({
     containerIndex,
     container,
     handleRemoveContainer,
-    submitted,
     handleAddInputToContainer,
     setCanAdd,
     handleContainerInputChange,
@@ -18,31 +17,26 @@ export default function Inputs({
     return (
         <>
             <div className={styles.InputsWrapper} key={containerIndex}>
-                {container.inputs.map((input, inputIndex) => {
-                    return (
-                        <Input
-                            submitted={submitted}
-                            setCanAdd={setCanAdd}
-                            setAddable={setAddable}
-                            Mandatory={inputIndex === 0 ? true : false}
-                            container={container}
-                            containerIndex={containerIndex}
-                            placeholder={
-                                inputIndex === 0
-                                    ? "შესრულების ინდიკატორის სათაური"
-                                    : "აქტივობა"
-                            }
-                            handleRemoveInputFromContainer={
-                                handleRemoveInputFromContainer
-                            }
-                            handleContainerInputChange={
-                                handleContainerInputChange
-                            }
-                            input={input}
-                            inputIndex={inputIndex}
-                        />
-                    );
-                })}
+                {container.inputs.map((input, inputIndex) => (
+                    <Input
+                        setCanAdd={setCanAdd}
+                        setAddable={setAddable}
+                        Mandatory={inputIndex === 0 ? true : false}
+                        container={container}
+                        containerIndex={containerIndex}
+                        placeholder={
+                            inputIndex === 0
+                                ? "შესრულების ინდიკატორის სათაური"
+                                : "აქტივობა"
+                        }
+                        handleRemoveInputFromContainer={
+                            handleRemoveInputFromContainer
+                        }
+                        handleContainerInputChange={handleContainerInputChange}
+                        input={input}
+                        inputIndex={inputIndex}
+                    />
+                ))}
                 <button
                     type="button"
                     className={styles.addInput}
