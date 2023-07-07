@@ -21,7 +21,7 @@ const Input = ({
             : setAddable(false);
     }, []);
     return (
-        <div className={styles.InputWrapper} key={inputIndex}>
+        <div className={styles.InputWrapper}>
             <input
                 className={styles.Input}
                 style={{

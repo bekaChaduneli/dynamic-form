@@ -17,11 +17,12 @@ export default function Inputs({
     const [iconShow, setIconShow] = useState(false);
     return (
         <>
-            <div className={styles.InputsWrapper} key={containerIndex}>
+            <div className={styles.InputsWrapper}>
                 {container.inputs.map((input, inputIndex) => (
                     <Input
                         submitted={submitted}
                         setCanAdd={setCanAdd}
+                        key={inputIndex}
                         setAddable={setAddable}
                         Mandatory={inputIndex === 0 ? true : false}
                         container={container}

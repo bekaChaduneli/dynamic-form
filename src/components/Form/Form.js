@@ -66,6 +66,7 @@ const Form = () => {
         <form onSubmit={handleSubmit} className={styles.Form}>
             {containers.map((container, containerIndex) => (
                 <Inputs
+                    key={containerIndex}
                     containerIndex={containerIndex}
                     setCanAdd={setCanAdd}
                     container={container}
